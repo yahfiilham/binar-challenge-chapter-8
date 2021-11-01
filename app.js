@@ -4,6 +4,11 @@ const cors = require("cors");
 
 const app = express();
 
+// SWAGGER
+const swaggerUI = require('swagger-ui-express');
+const apiDoc = require('./doc.json');
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(apiDoc));
+
 var corsOptions = {
   origin: "http://localhost:8081"
 };

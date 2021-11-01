@@ -1,0 +1,582 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "description" : "This is a restfull api game player that can be used to manage player data in a game.\n",
+    "version" : "1.0.0",
+    "title" : "RestFull Api Player Game",
+    "termsOfService" : "http://swagger.io/terms/",
+    "contact" : {
+      "email" : "yahfi.ilham@gmail.com"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "servers" : [ {
+    "description" : "Base Path",
+    "url" : "http://localhost:5000/api"
+  } ],
+  "tags" : [ {
+    "name" : "player",
+    "description" : "Operations about player"
+  } ],
+  "paths" : {
+    "/players" : {
+      "post" : {
+        "tags" : [ "player" ],
+        "summary" : "Add new player",
+        "description" : "Create New Player",
+        "responses" : {
+          "201" : {
+            "description" : "Successfully create new player",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PlayerRes"
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Failed to create new player",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "type" : "string",
+                      "example" : "FAILED"
+                    },
+                    "message" : {
+                      "type" : "string",
+                      "example" : "username or email or password field cannot be empty."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "type" : "string",
+                      "example" : "FAILED"
+                    },
+                    "message" : {
+                      "type" : "string",
+                      "example" : "Some error occurred while creating the Player."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Player"
+              }
+            }
+          },
+          "description" : "Created player object",
+          "required" : true
+        }
+      },
+      "get" : {
+        "tags" : [ "player" ],
+        "summary" : "List all available player",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation to get all player data",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PlayerAllRes"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "type" : "string",
+                      "example" : "FAILED"
+                    },
+                    "message" : {
+                      "type" : "string",
+                      "example" : "Some error occurred while retrieving players."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/players/{id}" : {
+      "get" : {
+        "tags" : [ "player" ],
+        "summary" : "Get player by id",
+        "description" : "Looking for player data with id parameter",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "The id that needs to be fetched. Use id '1' for testing.",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PlayerRes"
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "type" : "string",
+                      "example" : "FAILED"
+                    },
+                    "message" : {
+                      "type" : "string",
+                      "example" : "Error retrieving Player with id=7r."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "player" ],
+        "summary" : "Updated player",
+        "description" : "Edit or update player data based on parameter id",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Id that need to be updated.",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully updated player data",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "type" : "string",
+                      "example" : "SUCCESS"
+                    },
+                    "message" : {
+                      "type" : "string",
+                      "example" : "Player was updated successfully."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Failed to update player data",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "type" : "string",
+                      "example" : "FAILED"
+                    },
+                    "message" : {
+                      "type" : "string",
+                      "example" : "Cannot update Player with id=10. Maybe Player was not found or req.body is empty!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "type" : "string",
+                      "example" : "FAILED"
+                    },
+                    "message" : {
+                      "type" : "string",
+                      "example" : "Error updating Player with id=1j."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "email" : {
+                    "type" : "string",
+                    "format" : "email",
+                    "example" : "yahfi@email.com"
+                  }
+                }
+              }
+            }
+          },
+          "description" : "Updated player object",
+          "required" : true
+        }
+      },
+      "delete" : {
+        "tags" : [ "player" ],
+        "summary" : "Delete player",
+        "description" : "delete player data based on parameter id",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Id that need to be deleted.",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully deleted player data",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "type" : "string",
+                      "example" : "SUCCESS"
+                    },
+                    "message" : {
+                      "type" : "string",
+                      "example" : "Player was deleted successfully!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Failed to delete player data",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "type" : "string",
+                      "example" : "FAILED"
+                    },
+                    "message" : {
+                      "type" : "string",
+                      "example" : "Cannot delete Player with id=16. Maybe Player was not found!"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "type" : "string",
+                      "example" : "FAILED"
+                    },
+                    "message" : {
+                      "type" : "string",
+                      "example" : "Could not delete Player with id=16j"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/players/exp/{id}" : {
+      "post" : {
+        "tags" : [ "player" ],
+        "summary" : "Add new player experience",
+        "description" : "Create New player experience",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "Id that need to be created.",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successfully create new player experience",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "type" : "string",
+                      "example" : "SUCCESS"
+                    },
+                    "message" : {
+                      "type" : "string",
+                      "example" : "Player with id=1 has more experience."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Failed to create new player experience",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "type" : "string",
+                      "example" : "FAILED"
+                    },
+                    "message" : {
+                      "type" : "string",
+                      "example" : "Error updating Player exp with id=20"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "Internal server Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "result" : {
+                      "type" : "string",
+                      "example" : "FAILED"
+                    },
+                    "message" : {
+                      "type" : "string",
+                      "example" : "Error updating Player exp with id=20r"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "exp" : {
+                    "type" : "integer",
+                    "example" : 10
+                  }
+                }
+              }
+            }
+          },
+          "description" : "Updated player experience object",
+          "required" : true
+        }
+      }
+    }
+  },
+  "externalDocs" : {
+    "description" : "Find out more about Swagger",
+    "url" : "http://swagger.io"
+  },
+  "components" : {
+    "schemas" : {
+      "Player" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "integer",
+            "format" : "int64",
+            "example" : 1
+          },
+          "username" : {
+            "type" : "string",
+            "example" : "yahfi"
+          },
+          "email" : {
+            "type" : "string",
+            "example" : "yahfi@gmail.com"
+          },
+          "password" : {
+            "type" : "string",
+            "example" : "ini_passoword"
+          },
+          "experience" : {
+            "type" : "integer",
+            "example" : 10
+          },
+          "lvl" : {
+            "type" : "integer",
+            "example" : 3
+          }
+        }
+      },
+      "PlayerRes" : {
+        "type" : "object",
+        "properties" : {
+          "result" : {
+            "type" : "string",
+            "example" : "SUCCESS"
+          },
+          "message" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "integer",
+                "format" : "int64",
+                "example" : 1
+              },
+              "username" : {
+                "type" : "string",
+                "example" : "yahfi"
+              },
+              "email" : {
+                "type" : "string",
+                "example" : "yahfi@gmail.com"
+              },
+              "password" : {
+                "type" : "string",
+                "format" : "password",
+                "example" : "ini_passoword"
+              },
+              "experience" : {
+                "type" : "integer",
+                "example" : 10
+              },
+              "lvl" : {
+                "type" : "integer",
+                "example" : 0
+              },
+              "updatedAt" : {
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "createdAt" : {
+                "type" : "string",
+                "format" : "date-time"
+              }
+            }
+          }
+        }
+      },
+      "PlayerAllRes" : {
+        "type" : "object",
+        "properties" : {
+          "result" : {
+            "type" : "string",
+            "example" : "SUCCESS"
+          },
+          "message" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "id" : {
+                  "type" : "integer",
+                  "format" : "int64",
+                  "example" : 1
+                },
+                "username" : {
+                  "type" : "string",
+                  "example" : "yahfi"
+                },
+                "email" : {
+                  "type" : "string",
+                  "example" : "yahfi@gmail.com"
+                },
+                "password" : {
+                  "type" : "string",
+                  "format" : "password",
+                  "example" : "ini_passoword"
+                },
+                "experience" : {
+                  "type" : "integer",
+                  "example" : 10
+                },
+                "lvl" : {
+                  "type" : "integer",
+                  "example" : 0
+                },
+                "updatedAt" : {
+                  "type" : "string",
+                  "format" : "date-time"
+                },
+                "createdAt" : {
+                  "type" : "string",
+                  "format" : "date-time"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

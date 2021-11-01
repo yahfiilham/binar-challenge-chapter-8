@@ -1,9 +1,9 @@
 // setup database here, change the values to suit your environment
 module.exports = {
-  HOST: "localhost",
+  HOST: "127.0.0.1",
   USER: "postgres",
-  PASSWORD: "password",
-  DB: "postgres",
+  PASSWORD: "ancol700",
+  DB: "learn_swagger",
   dialect: "postgres",
   pool: {
     max: 5,
