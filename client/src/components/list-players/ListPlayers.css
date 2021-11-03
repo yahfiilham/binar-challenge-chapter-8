@@ -1,0 +1,42 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-left: 20px;
+}
+
+table, td, th {
+    border: 1px solid #0067ee;
+}
+
+table th {
+    background-color: #0067ee;
+}
+
+table td {
+    padding-left: 10px;
+}
+
+.button {
+    text-align: center;
+}
+
+button {     
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;        
+}
+
+img {
+    vertical-align: middle;
+    margin: auto;
+}
+
+button .edit {
+    width: 25px;
+}
+
+button .delete {
+    width: 35px;
+}
