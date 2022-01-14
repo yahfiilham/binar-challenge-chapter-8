@@ -5,20 +5,32 @@
 }
 
 h1 {
+  margin: 2rem 0 4rem 0!important;
   text-align: center;
 }
 
-h2 {
-  text-align: center;
+.flex-row, .add-player, .list-player, .h-add, .h-edit, .h-list {
+  margin: 0 .5rem;
 }
 
-.flex-row {
-  display: flex;
-  flex-direction: row;
-}
+@media (min-width: 992px) {
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .add-player, .list-player {
+    display: inline-block;
+    width: 49%;
+  }
 
-.add-player, .list-player {
-  /* border: 1px solid yellow; */
-  display: inline-block;
-  width: 49%;
+  .h-list {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .h-add, .h-edit {
+    margin-left: 14.5rem;
+    margin-bottom: 1rem;
+  }
 }

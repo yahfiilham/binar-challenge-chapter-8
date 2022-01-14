@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './EditPlayerForm.css'
+import '../form.css'
 
 const EditPlayerForm = (props) => {
     const [player, setPlayer] = useState(props.currentPlayerData)
@@ -17,41 +17,58 @@ const EditPlayerForm = (props) => {
 
     return (
         <form
-        onSubmit={(event) => {
-            event.preventDefault()
+            className='form-edit'
+            onSubmit={(event) => {
+                event.preventDefault()
 
-            props.onUpdateUser(player.id, player)
-        }}
+                props.onUpdateUser(player.id, player)
+                props.setSearching(false)
+            }}
         >
-            <label>Username</label>
-            <input
-                type="text"
-                name="username"
-                value={player.username}
-                onChange={handleInputChange}
-            />
-            <label className="label">Email</label>
-            <input
-                type="email"
-                name="email"
-                value={player.email}
-                onChange={handleInputChange}
-            />
-            <label className="label">Experience</label>
-            <input
-                type="text"
-                name="exp"
-                value={player.exp}
-                onChange={handleInputChange}
-            />
-            <label className="label">Level</label>
-            <input
-                type="text"
-                name="lvl"
-                value={player.lvl}
-                onChange={handleInputChange}
-            />
-            <button className="button-add">Update player</button>
+            <div class="flex-form">
+                <div>
+                    <label className='label-edit'>Username</label>
+                    <input
+                        classname="input input-edit"
+                        type="text"
+                        name="username"
+                        value={player.username}
+                        onChange={handleInputChange}
+                    />
+                </div>
+                <div>
+                    <label className="label-edit">Email</label>
+                    <input
+                        classname="input input-edit"
+                        type="email"
+                        name="email"
+                        value={player.email}
+                        onChange={handleInputChange}
+                    />
+                </div>
+                <div>
+                <label className="label-edit">Experience</label>
+                    <input
+                        classname="input input-edit"
+                        type="text"
+                        name="exp"
+                        value={player.exp}
+                        onChange={handleInputChange}
+                    />
+                </div>
+                <div>
+                    <label className="label-edit">Level</label>
+                    <input
+                        classname="input input-edit"
+                        type="text"
+                        name="lvl"
+                        value={player.lvl}
+                        onChange={handleInputChange}
+                    />
+                </div>
+            </div>
+            <button className="button-form">Update player</button>
+            <button className="button-form">Cancel</button>
         </form>
     )
 }

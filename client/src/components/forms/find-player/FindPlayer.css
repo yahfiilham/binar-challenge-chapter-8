@@ -1,8 +1,8 @@
 .form-search {
     display: flex;
+    width: 100%;
     flex-direction: row;
     margin-bottom: 10px;
-    margin-left: 20px;
 }
 
 .search {
@@ -11,17 +11,26 @@
 
 .button-search {
     position:relative;
-    padding: 8px 5px 18px 5px;
     left:0px;
-    border:2px solid #0067ee;
     background-color:#0067ee;
     color:#fafafa;
     width: auto;
     border-radius: 0 5px 5px 0;
-    text-align: center;
     cursor: pointer;
 }
 
+.button-search::-webkit-input-placeholder {
+    text-align: center;
+    color: tomato !important;
+}
+
+
 input:focus {
     outline: none;
+}
+
+@media (min-width: 992px) {
+    .form-search {
+        margin-left: 30px;
+    }
 }

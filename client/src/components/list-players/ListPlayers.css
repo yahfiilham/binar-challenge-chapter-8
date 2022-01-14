@@ -1,19 +1,30 @@
-table {
+.table-list {
     border-collapse: collapse;
     width: 100%;
-    margin-left: 20px;
 }
 
-table, td, th {
+.table-list, td, th {
     border: 1px solid #0067ee;
 }
 
-table th {
+.table-list th {
     background-color: #0067ee;
+    color: white;
+    border: none;
 }
 
-table td {
+.table-list td {
     padding-left: 10px;
+    color: white;
+}
+
+button .edit {
+    width: 25px;
+}
+
+img {
+    vertical-align: middle;
+    margin: auto;
 }
 
 .button {
@@ -28,15 +39,12 @@ button {
     overflow: hidden;        
 }
 
-img {
-    vertical-align: middle;
-    margin: auto;
-}
-
-button .edit {
-    width: 25px;
-}
-
 button .delete {
     width: 35px;
+}
+
+@media (min-width: 992px) {
+    .table-list {
+        margin-left: 30px;
+    }
 }

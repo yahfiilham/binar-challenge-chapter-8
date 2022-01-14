@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './AddPlayerForm.css'
+import '../form.css'
 
 const AddPlayerForm = (props) => {
     // menngkapt data player sementara dari inputan form 
@@ -20,9 +20,10 @@ const AddPlayerForm = (props) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="form">
             <label>Username</label>
             <input
+                className='input'
                 type="text"
                 name="username"
                 value={player.username}
@@ -30,6 +31,7 @@ const AddPlayerForm = (props) => {
             />
             <label className="label">Email</label>
             <input
+                className='input'
                 type="email"
                 name="email"
                 value={player.email}
@@ -37,6 +39,7 @@ const AddPlayerForm = (props) => {
             />
             <label className="label">Experience</label>
             <input
+                className='input'
                 type="text"
                 name="exp"
                 value={player.exp}
@@ -44,12 +47,13 @@ const AddPlayerForm = (props) => {
             />
             <label className="label">Level</label>
             <input
+                className='input'
                 type="text"
                 name="lvl"
                 value={player.lvl}
                 onChange={handleInputChange}
             />
-            <button className="button-add">Add new player</button>
+            <button className="button-form">Add new player</button>
         </form>
     )
 }
